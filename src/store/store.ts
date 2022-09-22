@@ -18,6 +18,7 @@ export interface AppStore {
 
 export const store = configureStore({
   reducer: { notes: notesReducer },
+  devTools: true,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
