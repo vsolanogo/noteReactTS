@@ -1,4 +1,4 @@
-import {  AnyAction } from "redux";
+import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 import { NotesState } from "../redux/notes/notesReducer";

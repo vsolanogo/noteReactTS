@@ -1,34 +1,48 @@
 {
-  "name": "vite-react-ts-emotion-starter",
-  "version": "0.0.0",
+  "name": "storybook-shated",
+  "version": "0.0.2",
+  "author": "Vitalii Zdrok",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "serve": "vite preview"
+    "dev": "run-p bundle generate-css storybook",
+    "format": "prettier --write README.md \"src/**/*.{js,jsx,ts,tsx,json}\"",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "bundle": "tsup src/index.ts --format esm,cjs --dts --external react --watch",
+    "generate-css": "postcss src/styles/tailwind.css -o public/main.css --watch"
   },
   "dependencies": {
-    "@emotion/babel-preset-css-prop": "^11.10.0",
-    "@emotion/core": "11.0.0",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@redux-devtools/extension": "^3.2.3",
-    "@reduxjs/toolkit": "^1.8.5",
-    "@types/react": "^18.0.20",
-    "@types/react-dom": "^18.0.6",
-    "@types/uuid": "^8.3.4",
-    "@vitejs/plugin-react": "^1.3.2",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.2",
-    "react-router-dom": "^6.4.0",
-    "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1",
-    "reselect": "^4.1.6",
-    "typescript": "^4.8.3",
-    "uuid": "^9.0.0",
-    "vite": "^2.9.13"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
+    "@babel/core": "^7.18.5",
+    "@storybook/addon-a11y": "6.5.9",
+    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-interactions": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/builder-webpack5": "^6.5.9",
+    "@storybook/manager-webpack5": "^6.5.9",
+    "@storybook/react": "^6.5.9",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^9.1.0",
+    "postcss-focus-visible": "^6.0.4",
+    "postcss-import": "^14.1.0",
+    "tailwindcss": "^3.1.4",
+    "tsup": "^6.1.2",
+    "typescript": "^4.7.4"
+  },
+  "overrides": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-refresh": "0.13.0"
   }
 }

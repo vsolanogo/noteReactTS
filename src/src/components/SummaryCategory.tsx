@@ -4,7 +4,6 @@ import {
   useArchivedNotes,
 } from "../redux/selectors/selectorHooks";
 import { NotesCategory } from "../models/NotesModels";
-import { ENote } from "./shared";
 
 export const SummaryCategory = ({ category }: { category: string }) => {
   const unarchivedNotes = useUnarchivedNotes();
@@ -18,10 +17,10 @@ export const SummaryCategory = ({ category }: { category: string }) => {
   ).length;
 
   return (
-    <ENote data-summary>
+    <div className="font-sans grid grid-cols-5 grid-flow-col gap-x-2 bg-blue-300 p-2 rounded-lg shadow-md items-center">
       <div>{NotesCategory[category]} </div>
       <div>{unarchivedCount.toString()}</div>
       <div>{archivedCount.toString()}</div>
-    </ENote>
+    </div>
   );
 };

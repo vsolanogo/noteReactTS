@@ -7,48 +7,49 @@ import { NotesCategory } from "../models/NotesModels";
 import { NoteComponent } from "./NoteComponent";
 import { NoteCreateForm } from "./NoteCreateForm";
 import { SummaryCategory } from "./SummaryCategory";
-import { EWrapper } from "./shared";
 import { NotesHatComponent } from "./NotesHatComponent";
 
 export const App = () => {
   const list = useUnarchivedNotes();
   const archivedNotes = useArchivedNotes();
 
+  const tablesStyle = "max-w-screen-2xl my-4 mx-auto grid gap-y-2 font-sans";
+
   return (
     <>
-      <EWrapper>
+      <div className={tablesStyle}>
         <NotesHatComponent />
-      </EWrapper>
+      </div>
 
-      <EWrapper>
+      <div className={tablesStyle}>
         {list.map((i, index) => (
           <div key={index}>
             <NoteComponent {...i} />
           </div>
         ))}
-      </EWrapper>
+      </div>
 
-      <EWrapper>
+      <div className={tablesStyle}>
         <NoteCreateForm />
-      </EWrapper>
+      </div>
 
-      <EWrapper>
+      <div className={tablesStyle}>
         {Object.keys(NotesCategory).map((i, index) => (
           <div key={index}>
             <SummaryCategory category={i} />
           </div>
         ))}
-      </EWrapper>
+      </div>
 
-      <EWrapper>
+      <div className={tablesStyle}>
         <NotesHatComponent archiveHat />
-      </EWrapper>
+      </div>
 
-      <EWrapper>
+      <div className={tablesStyle}>
         {archivedNotes.map((i) => (
           <NoteComponent key={i.id} {...i} />
         ))}
-      </EWrapper>
+      </div>
     </>
   );
 };

@@ -1,6 +1,6 @@
-# vite-react-ts-emotion-starter
-Vitejs starter using React &amp; Typescript.
+## Running Storybook
 
-Styling done with Emotion.
-
-Also includes basic routing using react-router.
+```sh
+npm ci
+npm run dev
+```
