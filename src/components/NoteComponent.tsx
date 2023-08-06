@@ -8,7 +8,6 @@ import {
 } from "../redux/notes/notesActions";
 import { Note, NotesCategory } from "../models/NotesModels";
 import { getDates } from "../redux/notes/notesCreator";
-import { ENote } from "./shared";
 
 export const NoteComponent: React.FC<Note> = ({
   id,
@@ -76,9 +75,14 @@ export const NoteComponent: React.FC<Note> = ({
     }
   };
 
-  console.log([createdAt])
+  const inputStyle =
+    "block w-full px-4 py-2 mt-2 text-sm text-gray-800 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500";
+    
   return (
-    <ENote data-editing={displayEditFields}>
+    <div
+      className="font-sans grid grid-cols-5 grid-flow-col gap-x-2 bg-blue-300 p-2 rounded-lg shadow-md items-center"
+      data-editing={displayEditFields}
+    >
       {displayEditFields ? (
         <input
           type="text"
@@ -86,6 +90,7 @@ export const NoteComponent: React.FC<Note> = ({
           onChange={(e) => {
             setTempName(e.target.value);
           }}
+          className={inputStyle}
         />
       ) : (
         <div>{name}</div>
@@ -101,13 +106,17 @@ export const NoteComponent: React.FC<Note> = ({
 
       {!displayEditFields && <div>{category}</div>}
       {displayEditFields && (
-        <select onChange={handleCategoryChange}>
+        <select
+          onChange={handleCategoryChange}
+          className="block w-full px-4 py-2 mt-2 text-sm text-gray-800 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+        >
           {Object.keys(NotesCategory).map((i) => {
             return (
               <option
                 value={NotesCategory[i]}
                 key={`${i}${id}Option`}
                 selected={NotesCategory[i] === tempCategory}
+                className="text-gray-800"
               >
                 {NotesCategory[i]}
               </option>
@@ -123,6 +132,7 @@ export const NoteComponent: React.FC<Note> = ({
           onChange={(e) => {
             setTempContent(e.target.value);
           }}
+          className={inputStyle}
         />
       ) : (
         <div>{content}</div>
@@ -135,6 +145,7 @@ export const NoteComponent: React.FC<Note> = ({
           onClick={() => {
             setDisplayEditFields(true);
           }}
+          className="px-4 py-2 font-semibold text-sm bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
         >
           Edit
         </button>
@@ -146,6 +157,7 @@ export const NoteComponent: React.FC<Note> = ({
             setDisplayEditFields(false);
             handleCancelEdit();
           }}
+          className="px-4 py-2 font-semibold text-sm bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
         >
           Cancel
         </button>
@@ -157,6 +169,7 @@ export const NoteComponent: React.FC<Note> = ({
             setDisplayEditFields(false);
             handleSubmitUpdates();
           }}
+          className="px-4 py-2 font-semibold text-sm bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
         >
           Save
         </button>
@@ -167,6 +180,7 @@ export const NoteComponent: React.FC<Note> = ({
           onClick={() => {
             handleUnarchive();
           }}
+          className="px-4 py-2 font-semibold text-sm bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
         >
           Unarchive
         </button>
@@ -177,12 +191,18 @@ export const NoteComponent: React.FC<Note> = ({
           onClick={() => {
             handleArchive();
           }}
+          className="px-4 py-2 font-semibold text-sm bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
         >
           Archive
         </button>
       )}
 
-      <button onClick={handleDelete}>Delete</button>
-    </ENote>
+      <button
+        onClick={handleDelete}
+        className="px-4 py-2 font-semibold text-sm bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+      >
+        Delete
+      </button>
+    </div>
   );
 };

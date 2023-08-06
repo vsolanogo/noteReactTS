@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { css } from "@emotion/react";
 import { useAppDispatch } from "../store/store";
 import { createNoteOperation } from "../redux/notes/notesActions";
 import { NotesCategory } from "../models/NotesModels";
-import { ENote } from "./shared";
 
 export const NoteCreateForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -52,9 +50,7 @@ export const NoteCreateForm: React.FC = () => {
   if (!isOpen)
     return (
       <button
-        css={css`
-          justify-self: flex-start;
-        `}
+        className="px-4 py-2 font-semibold text-sm bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
         onClick={handleToggleForm}
       >
         Create new note
@@ -62,7 +58,7 @@ export const NoteCreateForm: React.FC = () => {
     );
 
   return (
-    <ENote data-creator>
+    <div className="font-sans grid grid-cols-5 grid-flow-col gap-x-2 bg-blue-300 p-2 items-center">
       <input
         type="text"
         placeholder="Name"
@@ -70,15 +66,20 @@ export const NoteCreateForm: React.FC = () => {
         onChange={(e) => {
           setTempName(e.target.value);
         }}
+        className="block w-full px-4 py-2 mt-2 text-sm text-gray-800 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
       />
 
-      <select onChange={handleCategoryChange}>
+      <select
+        onChange={handleCategoryChange}
+        className="block w-full px-4 py-2 mt-2 text-sm text-gray-800 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+      >
         {Object.keys(NotesCategory).map((i) => {
           return (
             <option
               value={NotesCategory[i]}
               key={`${i}createform`}
               selected={NotesCategory[i] === tempCategory}
+              className="text-gray-800"
             >
               {NotesCategory[i]}
             </option>
@@ -93,6 +94,7 @@ export const NoteCreateForm: React.FC = () => {
         onChange={(e) => {
           setTempContent(e.target.value);
         }}
+        className="block w-full px-4 py-2 mt-2 text-sm text-gray-800 placeholder-gray-400 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
       />
 
       <button
@@ -100,6 +102,7 @@ export const NoteCreateForm: React.FC = () => {
           handleToggleForm();
           handleCancelEdit();
         }}
+        className="px-4 py-2 font-semibold text-sm bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
       >
         Cancel
       </button>
@@ -107,9 +110,10 @@ export const NoteCreateForm: React.FC = () => {
         onClick={() => {
           handleSubmitSave();
         }}
+        className="px-4 py-2 font-semibold text-sm bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
       >
         Save
       </button>
-    </ENote>
+    </div>
   );
 };

@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { useAppSelector } from "../../store/store"
+import { useAppSelector } from "../../store/store";
 import { Note } from "../../models/NotesModels";
 import { selectNotesList } from "./selectors";
 import {
